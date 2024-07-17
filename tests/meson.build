@@ -4,8 +4,10 @@ src = [
   'main.cpp',
   'card_tests.cpp',
   'deck_tests.cpp',
+  'player_tests.cpp',
   '../src/card.cpp',
   '../src/deck.cpp',
+  '../src/player.cpp',
 ]
 
 include = include_directories('../include/')

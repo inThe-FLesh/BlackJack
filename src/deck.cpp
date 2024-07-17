@@ -34,6 +34,7 @@ Deck::Deck(int size) {
     deck_.push_back(card);
   }
 
+  size_ = size;
   deck_initialised_ = true;
 }
 

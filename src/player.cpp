@@ -1,22 +1,10 @@
 #include "player.hpp"
 #include <memory>
-#include <mutex>
-#include <vector>
 
-Player::Player(std::shared_ptr<Deck> deck, int initial_chips) {
-  deck_ = deck;
-  chip_differnce_.store(initial_chips);
-  update_thread_ = std::thread(&Player::UpdateChips, this);
+Player::Player(Deck deck, int initial_chips) {
+  deck_ = std::make_shared<Deck>(deck);
+  chips_ = initial_chips;
 }
 
-void Player::UpdateChips() {
-  while (!hand_in_progress) {
-    std::lock_guard<std::mutex> lock(chips_mutex_);
+void Player::UpdateChips(int chips) { chips_ += chips; }
 
-    if (chips_ > chip_differnce_) {
-      chips_ -= chip_differnce_;
-    } else {
-      chips_ = 0;
-    }
-  }
-}

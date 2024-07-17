@@ -1,23 +1,24 @@
 #include "agent.hpp"
 #include "deck.hpp"
 #include <memory>
-#include <mutex>
-#include <thread>
 
-class Player : Agent {
+#ifndef BLACKJACK_INCLUDE_PLAYER_H_
+#define BLACKJACK_INCLUDE_PLAYER_H_
+
+class Player : public Agent {
 public:
-  Player(std::shared_ptr<Deck> deck, int initial_chips);
+  Player(Deck deck, int initial_chips);
 
-private:
-  void UpdateChips();
+  // use negative argument to reduce chip count
+  void UpdateChips(int chips); 
 
 private:
   int id_;
-  std::thread update_thread_;
-  std::mutex chips_mutex_;
-  std::atomic<int> chip_differnce_;
   bool hand_in_progress = false;
   std::shared_ptr<Deck> deck_;
   std::vector<Card> hand_;
   unsigned long chips_;
 };
+
+#endif // BLACKJACK_INCLUDE_PLAYER_H_
+

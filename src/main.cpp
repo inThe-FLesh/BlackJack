@@ -1,4 +1,6 @@
 #include "main.hpp"
+#include "player.hpp"
+#include <memory>
 #include <vector>
 
 int main() {

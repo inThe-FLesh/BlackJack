@@ -19,7 +19,7 @@ public:
 
   std::string GetSuit();
 
-  void CorrectValue();
+  void SwapAceVal();
 };
 
 #endif // BLACKJACK_INCLUDE_CARD_H_

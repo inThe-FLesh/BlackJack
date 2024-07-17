@@ -33,7 +33,7 @@ int Card::GetValue() { return value_; }
 
 std::string Card::GetSuit() { return suit_; }
 
-void Card::CorrectValue() {
+void Card::SwapAceVal() {
   if (Is_Ace) {
     value_ = 1;
   }

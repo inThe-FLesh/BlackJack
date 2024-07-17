@@ -29,7 +29,7 @@ TEST_F(CardTest, ValueTest) {
 
 TEST_F(CardTest, AceTest) {
   Card card("A", valid_card_suits.at(0));
-  card.CorrectValue();
+  card.SwapAceVal();
 
   EXPECT_EQ(card.GetValue(), 1);
 }
