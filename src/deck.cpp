@@ -15,6 +15,9 @@ Card Deck::GenRandomCard() {
 
     Card card(card_value, card_suit);
 
+    if (card.GetValue() < 2)
+        throw std::runtime_error("Card Value Incorrect");
+
     return card;
   } catch (std::out_of_range &e) {
     std::cerr << "Deck tried to select a card that was out of range: "

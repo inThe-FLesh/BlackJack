@@ -7,16 +7,14 @@
 
 class Player : public Agent {
 public:
-  Player(Deck deck, int initial_chips);
+	Player(std::vector<Card> deck, int initial_chips);
 
   // use negative argument to reduce chip count
-  void UpdateChips(int chips); 
+  void UpdateChips(int chips);
 
 private:
   int id_;
-  bool hand_in_progress = false;
-  std::shared_ptr<Deck> deck_;
-  std::vector<Card> hand_;
+  bool hand_in_progress = false; 
   unsigned long chips_;
 };
 

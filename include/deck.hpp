@@ -9,17 +9,17 @@
 #define BLACKJACK_INCLUDE_DECK_H_
 
 class Deck {
-private:
-  int size_ = 0;
-  bool deck_initialised_ = false;
-  std::vector<Card> deck_;
-
   Card GenRandomCard();
 
 public:
   Deck(int size);
 
   std::vector<Card> GetDeck();
+
+private:
+  int size_ = 0;
+  bool deck_initialised_ = false;
+  std::vector<Card> deck_;
 };
 
 #endif // BLACKJACK_INCLUDE_DECK_H_
