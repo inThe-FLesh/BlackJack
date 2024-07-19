@@ -14,7 +14,9 @@ class Deck {
 public:
   Deck(int size);
 
-  std::vector<Card> GetDeck();
+	Card GetNextCard();
+
+	bool Empty();
 
 private:
   int size_ = 0;

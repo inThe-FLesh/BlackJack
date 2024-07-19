@@ -1,6 +1,7 @@
 #include "card.hpp"
 #include <cstdlib>
 #include <iostream>
+#include <ostream>
 #include <string>
 
 Card::Card(std::string name, std::string suit) {
@@ -24,7 +25,8 @@ void Card::SetValue() {
   try {
     value_ = std::stoi(name_);
   } catch (const std::invalid_argument &e) {
-    std::cerr << "Invalid argument: " << e.what() << std::endl;
+    std::cerr << "Invalid argument: " << e.what() 
+			<< " with name: " << name_ << std::endl; 
     exit(EXIT_FAILURE);
   }
 }

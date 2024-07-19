@@ -12,32 +12,29 @@ class Agent {
 public:
   virtual std::vector<Card> GetHand() { return hand_; }
 
-  std::vector<Card> GetDeck() { return *deck_; }
+  virtual std::shared_ptr<Deck> GetDeck() { return deck_; }
 
   virtual void UpdateHand() {
-    if (deck_ == NULL)
-      throw std::runtime_error("deck is empty, cannot draw a card");
+    if (deck_ == nullptr)
+      throw std::runtime_error("Deck is not initialised");
 
-    hand_.push_back(deck_->back());
-    deck_->pop_back();
+    hand_.push_back(deck_->GetNextCard());
   }
 
   void SetHand() {
-    for (uint8_t i = 0; i < 1; i++) {
-      if (deck_ == NULL)
-        throw std::runtime_error("deck is empty, cannot draw a card");
+    if (deck_ == nullptr)
+      throw std::runtime_error("deck is empty, cannot draw a card");
 
-      hand_.push_back(deck_->back());
-      deck_->pop_back();
+    for (uint8_t i = 0; i < 1; i++) {
+
+      hand_.push_back(deck_->GetNextCard());
     }
   }
 
-  void UpdateDeck(std::vector<Card> deck) {
-    deck_ = std::make_shared<std::vector<Card>>(deck);
-  }
+  void UpdateDeck(std::shared_ptr<Deck> deck) { deck_ = deck; }
 
 protected:
-  std::shared_ptr<std::vector<Card>> deck_;
+	std::shared_ptr<Deck> deck_;
   std::vector<Card> hand_;
 };
 

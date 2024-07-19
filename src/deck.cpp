@@ -3,6 +3,22 @@
 #include <stdexcept>
 #include <vector>
 
+
+Deck::Deck(int size) {
+  if (size < 1) {
+    throw std::out_of_range("size cannot be less than 0");
+    exit(EXIT_FAILURE);
+  }
+
+  for (int i = 0; i < size; i++) {
+    Card card = GenRandomCard();
+    deck_.push_back(card);
+  }
+
+  size_ = size;
+  deck_initialised_ = true;
+}
+
 Card Deck::GenRandomCard() {
   std::random_device device;
   std::mt19937 rng(device());
@@ -26,19 +42,23 @@ Card Deck::GenRandomCard() {
   }
 }
 
-Deck::Deck(int size) {
-  if (size < 1) {
-    throw std::out_of_range("size cannot be less than 0");
-    exit(EXIT_FAILURE);
-  }
+Card Deck::GetNextCard() {
 
-  for (int i = 0; i < size; i++) {
-    Card card = GenRandomCard();
-    deck_.push_back(card);
-  }
+	if (size_ > 0){
+		Card next_card = deck_.back();
+		deck_.pop_back();
+		size_--;
 
-  size_ = size;
-  deck_initialised_ = true;
+		return next_card;
+	}
+
+	throw std::runtime_error("Deck is empty");
 }
 
-std::vector<Card> Deck::GetDeck() { return deck_; }
+bool Deck::Empty(){
+	if (size_ == 0) {	
+		return true;
+	}
+
+	return false;
+}
